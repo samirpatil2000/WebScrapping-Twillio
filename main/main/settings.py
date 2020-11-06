@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #Third Party
+    'crispy_forms',
+
     #Local Apps
     'scrapper',
     'twillio',

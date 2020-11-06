@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SMS</title>
-</head>
-<body>
-<div class="container">
-    <h2>SMS</h2>
+{% extends 'base.html' %}
+{% block body %}
+{% load crispy_forms_tags %}
 
-</body>
-</html>
+<div class="container">
+    <h2>Otp Send Successfully To {{ mobile_number }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="'border-bottom mb-4">Please Enter Valid OTP </legend>
+           {{ form | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Verify</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

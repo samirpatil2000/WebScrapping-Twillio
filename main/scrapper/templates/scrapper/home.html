@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block body %}
 <div class="container">
     <h2>This is home  <a href="{% url 'scrapper' %}" class="button">Scrap Here</a></h2>
     {% for obj in objects %}
     <h3> {{ forloop.counter }} ] {{ obj.title }}</h3>
     {% endfor %}
 </div>
-</body>
-</html>
+{% endblock %}
