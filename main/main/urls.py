@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('scrapper.urls')),
     path('v/',include('twillio.urls')),
+    path('a/',include('ajax.urls')),
 ]

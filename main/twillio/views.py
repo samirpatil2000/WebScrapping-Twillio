@@ -11,11 +11,11 @@ def generate_opt():
     return n
 
 # otp=1234
-otp=generate_opt()
 
-
+otp = generate_opt()
 # Create your views here.
 def sms(request):
+
     mobile_number='+919730614299'
 
     # message='Network error'
@@ -42,8 +42,6 @@ def sms(request):
                 return redirect('scrapper_home')
             else:
                 messages.warning(request,'Your Otp Is Wrong')
-
-
 
     context={
         'message':message,
