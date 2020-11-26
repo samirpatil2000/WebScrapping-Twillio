@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 # Create your models here.
+from django.urls import reverse
 from django.utils import timezone
 import random
 
@@ -33,6 +34,9 @@ class Order(models.Model):
     def get_final_amount(self):
         amount=int(self.get_total_amount()) - self.get_discount_amount()
         return amount
+
+    def get_absolute_url(self):
+        return reverse('order_detail_coupon',kwargs={'id':self.id})
 
 
 def random_discount_generator():

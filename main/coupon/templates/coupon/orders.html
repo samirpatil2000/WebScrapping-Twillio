@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>coupon</title>
-</head>
-<body>
-<div class="container">
-    <h2>Orders</h2>
-    {% for obj in objects %}
-    <h3>{{ forloop.counter }} {{ obj.name }}</h3>
-    {% endfor %}
-</div>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <h2>Orders</h2>
+        {% for obj in objects %}
+        <a href="{{ obj.get_absolute_url }}">{{ forloop.counter }} {{ obj.name }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
