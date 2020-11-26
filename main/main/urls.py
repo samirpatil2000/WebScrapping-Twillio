@@ -21,4 +21,5 @@ urlpatterns = [
     path('',include('scrapper.urls')),
     path('v/',include('twillio.urls')),
     path('a/',include('ajax.urls')),
+    path('c/',include('coupon.urls')),
 ]

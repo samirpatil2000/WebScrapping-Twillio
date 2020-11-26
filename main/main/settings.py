@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'scrapper',
     'twillio',
     'ajax',
+    'coupon',
 ]
 
 MIDDLEWARE = [
