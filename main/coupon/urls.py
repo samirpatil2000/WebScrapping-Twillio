@@ -1,9 +1,10 @@
 
 from django.urls import path
-from .views import order_detail_coupon,orders_list
+from .views import order_detail_coupon,orders_list,remove_coupon
 urlpatterns = [
 
-    path('c/<id>', order_detail_coupon, name='order_detail_coupon'),
-    path('',orders_list,name='orders_list'),
+    path('order_detail/<id>', order_detail_coupon, name='order_detail_coupon'),
+    path('remove/<id>', remove_coupon, name='remove_coupon'),
+    path('orders/',orders_list,name='orders_list'),
 
 ]

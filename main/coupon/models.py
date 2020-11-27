@@ -15,7 +15,7 @@ def random_order_generator():
 class Order(models.Model):
     name=models.CharField(default=random_order_generator,max_length=10)
     total_amount=models.IntegerField(default=5000)
-    coupon=models.ForeignKey('Coupon',on_delete=models.CASCADE,blank=True,null=True)
+    coupon=models.ForeignKey('Coupon',on_delete=models.SET_NULL,blank=True,null=True)
 
 
     def __str__(self):
@@ -38,6 +38,9 @@ class Order(models.Model):
     def get_absolute_url(self):
         return reverse('order_detail_coupon',kwargs={'id':self.id})
 
+    def get_remove_coupon_url(self):
+        return reverse('remove_coupon',kwargs={'id':self.id})
+
 
 def random_discount_generator():
     number=random.randint(0,95)
@@ -45,7 +48,7 @@ def random_discount_generator():
 
 def random_discount_code_generator():
     list=['CODE','FRIDAY','EASY','PICKME','FIRST']
-    number=random.randint(0,len(list))
+    number=random.randint(0,len(list)-1)
     return list[number]
 
 class Coupon(models.Model):

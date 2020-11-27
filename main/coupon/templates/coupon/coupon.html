@@ -6,9 +6,12 @@
         <h2>{{ object.name }}</h2>
         <h2> Total Amount {{ object.total_amount }}</h2>
         {% if object.coupon %}
-            <h2 style="color: red">Coupon is already applied</h2>
+            <h2 style="color: red">Coupon is already applied {{ object.coupon.code }} with {{ object.coupon.discount }}%</h2>
             <h3>Discount is {{ object.get_discount_amount }}</h3>
             <h2>Final Price {{ object.get_final_amount }}</h2>
+        {% comment %}
+            <a href="{{ object.get_remove_coupon_url }}" class="btn btn-danger">Remove</a>
+        {% endcomment %}
 
         {% else %}
             <form method="POST">
@@ -22,5 +25,11 @@
                 </div>
             </form>
         {% endif %}
+        <div>
+            <h2>Coupons</h2>
+            {% for coupon in coupons %}
+                <h4>{{ coupon.code }} with discount {{ coupon.discount }}% </h4>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

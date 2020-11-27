@@ -12,6 +12,7 @@ def orders_list(request):
     }
     return render(request,'coupon/orders.html',context)
 def order_detail_coupon(request,id):
+    coupons=Coupon.objects.all()
     order=Order.objects.get(id=id)
     couponForm=CouponForm()
     if request.method=='POST':
@@ -25,7 +26,7 @@ def order_detail_coupon(request,id):
                                           is_active=True)
                 order.coupon=coupon
                 order.save()
-                messages.success(request,f"Coupon has been successfully Applied with discount{coupon.discount}")
+                messages.success(request,f"Coupon has been successfully Applied with discount {coupon.discount}%")
 
             except Coupon.DoesNotExist:
                 messages.warning(request,"Invalid Coupon")
@@ -38,6 +39,18 @@ def order_detail_coupon(request,id):
     context={
         'object':order,
         'form':couponForm,
+        'coupons':coupons
     }
     return render(request,'coupon/coupon.html',context)
 
+def remove_coupon(request, id):
+    order = Order.objects.get(id=id)
+    coupon=order.coupon
+    if order.coupon:
+        order.coupon.delete()
+        # order.save()
+        messages.warning(request,f"{coupon.code} code is successfully remove")
+    else:
+        messages.warning(request,"applied coupon first")
+
+    return redirect('order_detail_coupon',id=id)
